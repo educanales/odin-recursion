@@ -14,28 +14,18 @@ function fibs(n) {
   // return myArray;
 }
 
-fibs(8);
+// fibs(8);
 
 function fibsRec(n) {
   console.log("This was printed recursively");
-  console.log(n);
-  let result = 0;
-  if (n === 1) {
-    // console.log(n);
-    result = 1;
+  
+  if (n < 2) {    
+    return [].concat(0, 1);
   } else {
-    // console.log(n);
-    // return array.concat(fibsRec(n - 1) + fibsRec(n - 2));
-    const f1 = fibsRec(n - 1);
-    const f2 = fibsRec(n - 2);
-    result = f1 + f2;
-    // return [].push(result);
+    const fibArray = fibsRec(n - 1);
+    const result = fibArray[fibArray.length - 1] + fibArray[fibArray.length - 2];
+    return fibArray.concat(result);
   }
-  console.log(result);
-  return [].concat(result);
 }
 
-// console.log(fibsRec(3));
-// (3 - 1 + 3 - 2) = 2 + 1
-// (2 - 1 + 2 - 2) = 1 + 0
-// (1 - 1 + 1 - 2) = 0 + -1
+console.log(fibsRec(8));
