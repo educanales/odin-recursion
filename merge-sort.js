@@ -10,22 +10,25 @@ function mergeSort(array) {
 
   const first = mergeSort(firstHalf);
   const second = mergeSort(secondHalf);
+  
   // Merge
   const newArray = [];
-  while (first.length > 0 && second.length > 0) {
-    if (first[0] < second[0]) {
-      newArray.push(first[0]);
-      first.shift();
+  let i = 0;
+  let j = 0;
+  while (i <= first.length - 1 && j <= second.length - 1) {
+    if (first[i] < second[j]) {
+      newArray.push(first[i]);
+      i++;
     } else {
-      newArray.push(second[0]);
-      second.shift();
+      newArray.push(second[j]);
+      j++;
     }
   }
-  if (first.length === 0) {
-    newArray.push(...second);
+  if (i === first.length) {
+    newArray.push(...second.slice(j));
   }
-  if (second.length === 0) {
-    newArray.push(...first);
+  if (j === second.length) {
+    newArray.push(...first.slice(i));
   }
   return newArray;
 }
